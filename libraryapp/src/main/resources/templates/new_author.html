@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="tr">
+<head>
+<meta charset="UTF-8">
+<div th:replace="sideProperties/header :: header-css" />
+</head>
+<body>
+	<div th:replace="sideProperties/header :: header" />
+	<div class="container">
+
+		<div class="row">
+			
+			<div class="col-sm-8">
+				<h1>Yazar Ekle</h1>
+
+				<div id="errors" class="alert alert-danger"
+					th:if="${(param.error != null) and (param.error[0] == 'true')}">
+					Lütfen Zorunlu Alanları Doldurunuz.</div>
+
+
+				<form action="#" th:action="@{/saveAuthor}" th:object="${author}"
+					method="POST">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Yazar Adı</label> <input
+							type="text" class="form-control" th:field="*{authorName}"
+							required>
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Açıklama</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1"
+							rows="4" th:field="*{authorDescription}"></textarea>
+					</div>
+
+					
+					<button type="submit" class="btn btn-primary">Kaydet</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div style="width: 100%; height: 80px;"></div>
+	
+</body>
+</html>

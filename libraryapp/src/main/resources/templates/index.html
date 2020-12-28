@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="tr">
+<head>
+
+<style type="text/css">
+#counterBox {
+	border-radius: 10px;
+	background-color: yellow;
+	margin: 20px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: yellow;
+}
+</style>
+
+
+
+<meta charset="UTF-8">
+<div th:replace="sideProperties/header :: header-css" />
+
+</head>
+<body>
+	<div th:replace="sideProperties/header :: header" />
+	<div class="container">
+		<div>
+		<a th:href="@{/showNewBookForm}"><div class="btn btn-warning"><i class=""></i> Kitap Ekle</div></a>
+
+		<h1>Kitaplar</h1>
+		<table class="table table-dark table-responsive">
+			<thead>
+				<tr>
+					<th width="12%">Kitap Adı</th>
+					<th width="12%">Kitap Alt Adı</th>
+					<th width="10%">Seri No</th>
+					<th width="10%">Yazar</th>
+					<th width="10%">Yayınevi</th>
+					<th width="10%">ISBN</th>
+					<th width="16%">Açıklama</th>
+					<th width="20%">İşlemler</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="book : ${listBook}">
+					<td th:text="${book.name}"></td>
+					<td th:text="${book.subName}"></td>
+					<td th:text="${book.serialName}"></td>
+					<td th:text="${book.bookAuthor}"></td>
+					<td th:text="${book.bookPublisherName}"></td>
+					<td th:text="${book.isbnNo}"></td>
+					<td th:text="${book.description}"></td>
+					<td><a th:href="@{/showBookFormForUpdate/{id}(id=${book.id})}" class="btn btn-secondary">
+					<i class="fas fa-edit"></i> Düzenle</a>
+						<a th:href="@{/deleteBook/{id}(id=${book.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Sil</a>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	</div>
+	<div style="width:100%; height:100px;"></div>
+	</div>
+	<div style="width: 100%; height: 100px;"></div>
+</body>
+</html>
